@@ -67,7 +67,7 @@ public class SupportingDocumentController   {
         SupportingDocument document = supportingDocumentService.getSupportingDocument(id);
         if (document != null) {
             String downloadURL = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/download/")
+                    .path("/document/download/")
                     .path(String.valueOf(document.getId()))
                     .toUriString();
 
