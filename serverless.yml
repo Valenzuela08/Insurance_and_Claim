@@ -1,0 +1,22 @@
+service: InsuranceAndClaims-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: java11
+  region: eu-central-1
+  environment:
+    DBPW: ${ssm:dbpw}
+
+package:
+  artifact: target/starbucks-api-0.0.1-SNAPSHOT.jar
+
+functions:
+  api:
+    handler: com.starbucks.api.lambda.StreamLambdaHandler::handleRequest
+    timeout: 15
+    memorySize: 2048
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
